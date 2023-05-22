@@ -5,9 +5,8 @@ const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
-if (!configuration.apiKey) {
+if (!configuration.apiKey)
   throw new Error("No OPENAI_API_KEY environment variable found");
-}
 
 const openai = new OpenAIApi(configuration);
 
@@ -24,7 +23,7 @@ export async function POST(request) {
   try {
     const response = await openai.createCompletion({
       model: "text-davinci-003",
-      prompt: `Dame un chiste para programdor de ${body.prompt}`,
+      prompt: `Dame un chiste para programador enfocado en el tema: ${body.prompt}`,
       temperature: 0.8,
       max_tokens: 60,
       top_p: 1.0,
